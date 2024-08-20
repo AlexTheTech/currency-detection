@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Detection</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Sidebar Navigation -->
+  <nav class="sidebar" id="sidebar">
+      <ul>
+          <li><a href="index.html" id="welcomeLink">Welcome</a></li>
+          <li><a href="about.html" id="aboutLink">About</a></li>
+          <li><a href="upload.html" id="currencyLink">Currency Detection</a></li>
+          <li><a href="webcam.html" id="webcamLink">Webcam Detection</a></li>
+      </ul>
+  </nav>
+
+    <!-- Toggle Button with Breadcrumb -->
+    <div class="header-bar">
+        <button class="sidebar-toggle" id="sidebarToggle">☰</button>
+        <div class="breadcrumb" id="breadcrumb">
+            <a href="welcome.html">Home</a> > <span>Currency Detection</span>
+        </div>
+    </div>
+
+    <div class="main-content" id="mainContent">
+        <!-- Main Container -->
+        <div class="container">
+            <h1>Currency Detection</h1>
+            <div class="content">
+                <div class="upload-section">
+                    <div id="dropZone" class="drop-zone">
+                        <img src="image.png" alt="Upload Icon" class="upload-icon">
+                        <p>Drag & Drop your image here or click to upload</p>
+                        <input type="file" id="imageUpload" accept="image/*" style="display: none;">
+                    </div>
+                    <!-- Error Message -->
+                    <p id="errorMessage" class="error-message" style="display: none;">Invalid file type. Please upload an image.</p>
+                    <!-- Loading Indicator -->
+                    <div id="loadingIndicator" class="loading-indicator" style="display: none;">
+                        <p>Loading model, please wait...</p>
+                        <div class="spinner"></div>
+                    </div>
+                </div>
+                <div id="imagePreview" class="image-preview">
+                    <img id="uploadedImage" src="#" alt="Your Image" style="display: none;"/>
+                    <p id="analyzingText" class="analyzing-text" style="display: none;">Analyzing...</p>
+                    <p id="prediction"></p>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Instructions Section -->
+        <div class="instructions-section">
+            <h2>How to Use</h2>
+            <p>To use this tool, simply drag and drop an image of a currency note into the upload area, or click to select an image file from your computer. The system will automatically detect the type of currency.</p>
+            <ul>
+                <li>Supported formats: JPEG, PNG</li>
+                <li>Ensure the image is clear and well-lit</li>
+                <li>Wait for the model to load before uploading</li>
+            </ul>
+        </div>
+
+        <!-- About This Project Section -->
+        <div class="about-section">
+            <h2>About This Project</h2>
+            <p>This project uses a machine learning model to detect and identify currency notes from images. Simply upload an image, and the system will analyze it to predict the type of currency. This tool is built using TensorFlow.js for real-time processing directly in your browser.</p>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <p>Developed by 4th Year VU Students</p>
+            <p>Team Members: Alexander Piccinelli | John Fava | Conor Custance-Harrison</p>
+            <p>
+                <a href="welcome.html">Welcome</a> |
+                <a href="about.html">About</a> |
+                <a href="index.html">Currency Detection</a> |
+                <a href="webcam.html">Webcam Detection</a>
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // JavaScript to toggle sidebar visibility and breadcrumb display
+        const sidebarToggle = document.getElementById('sidebarToggle');
+        const sidebar = document.getElementById('sidebar');
+        const mainContent = document.getElementById('mainContent');
+        const breadcrumb = document.getElementById('breadcrumb');
+
+        sidebarToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('active');
+            mainContent.classList.toggle('shifted');
+            breadcrumb.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>
