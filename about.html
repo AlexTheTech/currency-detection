@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About the Currency Detection Tool</title>
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar" id="sidebar">
+        <ul>
+            <li><a href="welcome.html" id="welcomeLink">Welcome</a></li>
+            <li><a href="about.html" id="aboutLink">About</a></li>
+            <li><a href="index.html" id="currencyLink">Currency Detection</a></li>
+            <li><a href="webcam.html" id="webcamLink">Webcam Detection</a></li>
+        </ul>
+    </nav>
+
+    <!-- Toggle Button with Breadcrumb -->
+    <div class="header-bar">
+        <button class="sidebar-toggle" id="sidebarToggle">☰</button>
+        <div class="breadcrumb" id="breadcrumb">
+            <a href="welcome.html">Home</a> > <span>About</span>
+        </div>
+    </div>
+
+    <div class="main-content" id="mainContent">
+        <!-- About Section -->
+        <div class="about-section">
+            <h1>About the Currency Detection Tool</h1>
+            <p>This project was developed as a part of an educational exercise to demonstrate the capabilities of machine learning and image recognition in the browser.</p>
+            <p>The Currency Detection Tool allows users to upload images of currency notes and instantly identifies them using a trained machine learning model. This tool is particularly useful for educational purposes, currency identification, and as a proof of concept for web-based AI applications.</p>
+
+            <h2>Technology Stack</h2>
+            <p>The tool is built using modern web technologies:</p>
+            <ul>
+                <li><strong>HTML5 & CSS3</strong> - For structuring and styling the web pages.</li>
+                <li><strong>JavaScript (ES6+)</strong> - For interactive functionality and handling user input.</li>
+                <li><strong>TensorFlow.js</strong> - A powerful library for deploying machine learning models directly in the browser.</li>
+                <li><strong>MobileNetV2</strong> - A pre-trained convolutional neural network model optimized for speed and performance.</li>
+            </ul>
+
+            <h2>Purpose and Goals</h2>
+            <p>The primary goal of this project is to showcase how machine learning models can be deployed and utilized in a web environment without requiring any backend services. By leveraging TensorFlow.js, we can run complex image recognition tasks directly in the user's browser, making AI more accessible and interactive.</p>
+            <p>Additionally, this project serves as an educational tool, helping students and developers understand the process of training, deploying, and using machine learning models in real-world applications.</p>
+
+            <h2>Challenges and Learnings</h2>
+            <p>Throughout the development of this tool, several challenges were encountered, such as:</p>
+            <ul>
+                <li>Optimizing the model for browser-based execution without compromising accuracy.</li>
+                <li>Ensuring that the tool is responsive and performs well on various devices, including mobile phones.</li>
+                <li>Handling different image formats and sizes to ensure consistent prediction results.</li>
+            </ul>
+            <p>These challenges provided valuable insights into the intricacies of web-based machine learning and helped refine our approach to deploying AI models in a lightweight, accessible manner.</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>Developed by 4th Year VU Students</p>
+        <p>Team Members: Alexander Piccinelli | John Fava | Conor Custance-Harrison</p>
+        <p>
+            <a href="welcome.html">Welcome</a> |
+            <a href="about.html">About</a> |
+            <a href="index.html">Currency Detection</a> |
+            <a href="webcam.html">Webcam Detection</a>
+        </p>
+    </footer>
+
+    <script>
+        // JavaScript to toggle sidebar visibility and breadcrumb display
+        const sidebarToggle = document.getElementById('sidebarToggle');
+        const sidebar = document.getElementById('sidebar');
+        const mainContent = document.getElementById('mainContent');
+        const breadcrumb = document.getElementById('breadcrumb');
+
+        // Highlight the current page in the sidebar
+        const currentPage = 'aboutLink'; // Set this based on the current page
+        document.getElementById(currentPage).classList.add('active-page');
+
+        sidebarToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('active');
+            mainContent.classList.toggle('shifted');
+            breadcrumb.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>

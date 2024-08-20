@@ -1,0 +1,501 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+body {
+    font-family: 'Orbitron', sans-serif;
+    background-color: #1a1a1a;
+    color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+/* Sidebar Styles */
+.sidebar {
+    background-color: #222;
+    padding: 20px;
+    width: 200px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: -200px; /* Initially hidden off-screen */
+    transition: left 0.3s ease;
+    z-index: 1000; /* Ensure it's on top of everything */
+}
+
+.sidebar:hover {
+    left: 0; /* Slide in on hover */
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar ul li {
+    margin: 20px 0;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 18px;
+    transition: color 0.3s;
+    display: block;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.sidebar ul li a.active-page {
+    background-color: #4caf50;
+    color: #fff;
+}
+
+.sidebar ul li a:hover {
+    color: #4caf50;
+    background-color: #333;
+}
+
+.about-section, .instructions-section {
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #333;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    text-align: left; /* Ensure text aligns left */
+}
+
+.about-section h2, .instructions-section h2 {
+    color: #ffffff;
+    font-size: 28px;
+    margin-bottom: 10px;
+    text-align: left; /* Align the heading text to the left */
+}
+
+.about-section p, .instructions-section p, .instructions-section ul {
+    color: #cccccc;
+    font-size: 16px;
+    line-height: 1.5;
+    text-align: left; /* Ensure text aligns left */
+}
+
+
+/* Content area when sidebar is hovered */
+.main-content {
+    margin-left: 20px;
+    padding: 20px;
+    width: calc(100% - 40px);
+    transition: margin-left 0.3s ease;
+}
+
+/* Adjust content position when sidebar is expanded */
+.sidebar:hover + .main-content {
+    margin-left: 240px; /* Increased margin-left for more space */
+    width: calc(100% - 260px);
+}
+
+.breadcrumb {
+    margin-bottom: 20px;
+    font-size: 16px;
+    color: #888;
+    white-space: nowrap;
+    transition: margin-left 0.3s ease; /* Ensure breadcrumb moves with sidebar */
+    margin-left: 60px; /* Increase margin-left */
+}
+
+.breadcrumb a {
+    color: #4caf50;
+    text-decoration: none;
+}
+
+.breadcrumb span {
+    color: #888;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #333;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 20px;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 36px;
+}
+
+.content {
+    display: flex;
+    justify-content: space-between; /* Align boxes side by side */
+    align-items: flex-start;
+    margin-top: 20px;
+}
+
+.upload-section {
+    width: 45%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.drop-zone {
+    padding: 40px;
+    background-color: #444;
+    border: 2px dashed #888;
+    border-radius: 10px;
+    cursor: pointer;
+    color: #888;
+    transition: background-color 0.3s, border-color 0.3s;
+    text-align: center;
+}
+
+.drop-zone:hover {
+    background-color: #555;
+    border-color: #fff;
+}
+
+.upload-icon {
+    width: 50px;
+    height: 50px;
+}
+
+.image-preview {
+    width: 45%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.image-preview img {
+    max-width: 100%;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.analyzing-text {
+    font-size: 18px;
+    color: #ffcc00;
+    animation: pulsate 1.5s infinite;
+    display: none;
+}
+
+@keyframes pulsate {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+#prediction {
+    font-size: 18px;
+    color: #4caf50;
+    font-weight: bold;
+    display: none;
+    text-align: center;
+    width: 100%;
+    margin-top: 10px;
+}
+
+/* Loading Indicator */
+.loading-indicator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.loading-indicator p {
+    color: #ffcc00;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #444;
+    border-top: 4px solid #ffcc00;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Error Message */
+.error-message {
+    color: #ff4444;
+    font-size: 16px;
+    margin-top: 10px;
+    display: none;
+}
+
+/* Instructions Section */
+.instructions-section {
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #333;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    text-align: center;
+}
+
+.instructions-section h2 {
+    color: #ffffff;
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.instructions-section p {
+    color: #cccccc;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.instructions-section ul {
+    list-style-type: disc;
+    color: #cccccc;
+    margin: 10px 0 0 20px;
+    text-align: left;
+}
+
+/* Footer with adjusted width */
+footer {
+    margin-top: 20px;
+    padding: 20px;
+    max-width: 1000px;
+    background-color: #333;
+    color: #888;
+    font-size: 14px;
+    border-top: 1px solid #444;
+    border-radius: 0 0 10px 10px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+footer p a {
+    color: #4caf50;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+footer p a:hover {
+    text-decoration: underline;
+}
+
+footer p {
+    margin: 5px 0;
+    color: #f4f4f4;
+    font-weight: 400;
+}
+
+/* Welcome Section */
+.welcome-section {
+    max-width: 1000px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #333;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    text-align: center;
+}
+
+.welcome-section h1 {
+    color: #ffffff;
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.welcome-section p {
+    color: #cccccc;
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+.welcome-section ul {
+    list-style-type: disc;
+    color: #cccccc;
+    text-align: left;
+    margin: 10px 0 20px 20px;
+}
+
+/* Card Container */
+.card-container {
+    display: flex;
+    justify-content: space-between; /* Space out the cards */
+    margin-top: 30px;
+}
+
+/* Individual Card Styles */
+.card {
+    background-color: #444;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 30%; /* Adjust width as needed */
+    margin: 0 10px; /* Add margin to create space between cards */
+}
+
+/* Remove left and right margins from first and last cards to avoid overflow */
+.card-container .card:first-child {
+    margin-left: 0;
+}
+.card-container .card:last-child {
+    margin-right: 0;
+}
+
+.card a {
+    text-decoration: none;
+    color: #f4f4f4;
+}
+
+.card h2 {
+    margin-bottom: 15px;
+    font-size: 24px;
+    color: #4caf50;
+}
+
+.card p {
+    font-size: 16px;
+    color: #cccccc;
+}
+
+/* Hover Effects */
+.card:hover {
+    transform: translateY(-10px); /* Lift the card slightly on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Custom Scrollbar Styles */
+::-webkit-scrollbar {
+    width: 10px;               /* Width of the scrollbar */
+    height: 10px;              /* Height of the scrollbar */
+}
+
+::-webkit-scrollbar-track {
+    background: #1a1a1a;       /* Background of the scrollbar track */
+    border-radius: 10px;       /* Round the corners of the track */
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #4caf50; /* Color of the scrollbar thumb */
+    border-radius: 10px;       /* Round the corners of the thumb */
+    border: 2px solid #1a1a1a; /* Space between thumb and track */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #45a049; /* Darker color on hover */
+}
+
+/* Firefox Scrollbar Styling */
+* {
+    scrollbar-width: thin;          /* Make the scrollbar thin */
+    scrollbar-color: #4caf50 #1a1a1a; /* Thumb color and track color */
+}
+
+/* IE and Edge Scrollbar Styling */
+*::-ms-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+*::-ms-scrollbar-track {
+    background: #1a1a1a;
+    border-radius: 10px;
+}
+
+*::-ms-scrollbar-thumb {
+    background-color: #4caf50;
+    border-radius: 10px;
+    border: 2px solid #1a1a1a;
+}
+/* Webcam Section */
+.webcam-section {
+    max-width: 1000px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #333;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    text-align: center;
+}
+
+.webcam-section h1 {
+    color: #ffffff;
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.webcam-section p {
+    color: #cccccc;
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+.webcam-container {
+    position: relative;
+    width: 640px;
+    height: 480px;
+    margin: 0 auto 20px;
+    background-color: #000;
+}
+
+#webcam {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    background-color: #000;
+}
+
+.control-buttons {
+    margin-bottom: 20px;
+}
+
+.control-buttons button {
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.control-buttons button:hover {
+    background-color: #45a049;
+}
+
+.detection-result {
+    margin-top: 20px;
+}
+
+.detection-result p {
+    font-size: 18px;
+    color: #ffcc00;
+    font-weight: bold;
+}

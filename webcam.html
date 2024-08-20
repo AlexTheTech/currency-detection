@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Webcam Currency Detection</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+  <script src="webcam.js" defer></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar" id="sidebar">
+        <ul>
+            <li><a href="welcome.html" id="welcomeLink">Welcome</a></li>
+            <li><a href="about.html" id="aboutLink">About</a></li>
+            <li><a href="index.html" id="currencyLink">Currency Detection</a></li>
+            <li><a href="webcam.html" id="webcamLink">Webcam Detection</a></li>
+        </ul>
+    </nav>
+
+    <!-- Toggle Button with Breadcrumb -->
+    <div class="header-bar">
+        <button class="sidebar-toggle" id="sidebarToggle">☰</button>
+        <div class="breadcrumb" id="breadcrumb">
+            <a href="welcome.html">Home</a> > <span>Webcam Detection</span>
+        </div>
+    </div>
+
+    <div class="main-content" id="mainContent">
+        <!-- Webcam Section -->
+        <div class="webcam-section">
+            <h1>Webcam Currency Detection</h1>
+            <p>Use your webcam to detect currencies in real-time. Hold a currency note in front of the camera, and the system will identify it.</p>
+
+            <!-- Webcam Video Feed -->
+            <div class="webcam-container">
+                <video id="webcam" autoplay playsinline></video>
+                <canvas id="canvas" style="display:none;"></canvas>
+            </div>
+
+            <!-- Webcam Selection Dropdown -->
+            <div class="webcam-selection">
+                <label for="webcamSelect">Select Webcam:</label>
+                <select id="webcamSelect"></select>
+            </div>
+
+
+            <!-- Control Buttons -->
+            <div class="control-buttons">
+                <button id="startButton">Start Webcam</button>
+                <button id="stopButton" style="display:none;">Stop Webcam</button>
+            </div>
+
+            <!-- Detection Result -->
+            <div id="detectionResult" class="detection-result">
+                <p id="resultText">Detection result will appear here.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>Developed by 4th Year VU Students</p>
+        <p>Team Members: Alexander Piccinelli | John Fava | Conor Custance-Harrison</p>
+        <p>
+            <a href="welcome.html">Welcome</a> |
+            <a href="about.html">About</a> |
+            <a href="index.html">Currency Detection</a> |
+            <a href="webcam.html">Webcam Detection</a>
+        </p>
+    </footer>
+
+    <script>
+        // JavaScript to toggle sidebar visibility and breadcrumb display
+        const sidebarToggle = document.getElementById('sidebarToggle');
+        const sidebar = document.getElementById('sidebar');
+        const mainContent = document.getElementById('mainContent');
+        const breadcrumb = document.getElementById('breadcrumb');
+
+        // Highlight the current page in the sidebar
+        const currentPage = 'webcamLink'; // Set this based on the current page
+        document.getElementById(currentPage).classList.add('active-page');
+
+        sidebarToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('active');
+            mainContent.classList.toggle('shifted');
+            breadcrumb.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>
